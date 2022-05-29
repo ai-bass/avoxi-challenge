@@ -10,16 +10,12 @@ reader = geoip2.database.Reader('GeoLite2-Country.mmdb')
 #Default route explains how to run ip check
 @app.route('/')
 def hello_geek():
-    sample_json = {
-        "ip":"128.101.101.101",
-        "countries": ["Rwanda", "China", "United States"]
-    }
-    return """<h1>IP Checker: post ip and list of countries to /is_valid to check validity
-    Sample JSON:
-    {
-        "ip":"128.101.101.101",
-        "countries": ["Rwanda", "China", "United States"]
-    }
+    return """<h1>IP Checker: POST ip and list of countries to /is_valid to check validity<br>
+    Sample JSON:<br>
+    {<br>
+        "ip":"128.101.101.101",<br>
+        "countries": ["China", "United States"]<br>
+    }<br>
     </h1>"""
 
 #Checks if ip address is valid    
@@ -44,7 +40,7 @@ def check_address_country(ip_add):
         ip_add (string): string representation of ip address
 
     Returns:
-        string: IP address' country of origin
+        string: IP address' country of origin or string indicating that the address was not found if exception is raised
     """
     try:
         response = reader.country(ip_add)
